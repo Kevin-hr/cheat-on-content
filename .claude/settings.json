@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(~/.claude/skills/tiktok-hashtag-scraper/**)",
+      "Bash(node scripts/scrape_sp5der_v3.js)",
+      "Bash(curl -I --connect-timeout 10 https://www.tiktok.com)",
+      "Bash(git fetch *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "command": "bash ${CLAUDE_PROJECT_DIR}/.cheat-hooks/prediction-immutability.sh",
+        "description": "cheat-on-content: block edits to prediction sections"
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": "bash ${CLAUDE_PROJECT_DIR}/.cheat-hooks/session-start.sh",
+        "description": "cheat-on-content: auto-render status report"
+      }
+    ]
+  }
+}
